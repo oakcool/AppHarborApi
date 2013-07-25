@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="OakIdeas.AppHarbor.Api.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
