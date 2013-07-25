@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("OakIdeas.AppHarbor.Api")]
 [assembly: AssemblyDescription("AppHarbor Api Main Package")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("OakIdeas")]
 [assembly: AssemblyProduct("OakIdeas.AppHarbor.Api")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
