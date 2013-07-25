@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api", "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.csproj", "{4347C736-A78F-4221-9B0B-FD0F55ECFF0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Models", "OakIdeas.AppHarbor.Api.Models\OakIdeas.AppHarbor.Api.Models.csproj", "{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{4347C736-A78F-4221-9B0B-FD0F55ECFF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4347C736-A78F-4221-9B0B-FD0F55ECFF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4347C736-A78F-4221-9B0B-FD0F55ECFF0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
