@@ -1,4 +1,4 @@
-<img src="https://tjbhgg.blu.livefilestore.com/y2p3TGwhHRNaIik5A6BIfMtjVdx7i-o6Gwt_bNSyNgoRnsSOni0GyXYQv13PGkXlSMg-3MhgpwaNqWGKEw2Hy1ve85ml1EZejDSpazeps9ryBzGtl9fVp_eqDQGGTv2rvIH/oakideas32x32.png?psid=1" alt="OakIdeas" />AppHarborApi
+<img width="50" height="50" src="https://tjbhgg.blu.livefilestore.com/y2p3TGwhHRNaIik5A6BIfMtjVdx7i-o6Gwt_bNSyNgoRnsSOni0GyXYQv13PGkXlSMg-3MhgpwaNqWGKEw2Hy1ve85ml1EZejDSpazeps9ryBzGtl9fVp_eqDQGGTv2rvIH/oakideas32x32.png?psid=1" alt="OakIdeas" />AppHarborApi
 ============
 
 A portable library with async access to the AppHarbor API
