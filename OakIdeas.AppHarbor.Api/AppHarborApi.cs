@@ -37,7 +37,10 @@ namespace OakIdeas.AppHarbor.Api
 
         private static AppHarborApi instance;
 
-        private AppHarborApi() { }
+        private AppHarborApi()
+        {
+            
+        }
 
         public static AppHarborApi Instance
         {
@@ -51,7 +54,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <summary>
         /// Retrieve the information associated with the specified application slug.
         /// </summary>
-        /// <param name="token">>The access token</param>
+        /// <param name="token">>The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns>Retrieve the information associated with the specified application slug.</returns>
         public async Task<Application> GetApplication(string token, string slug)
@@ -66,7 +69,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <summary>
         /// Returns a list of all applications for the authorized user.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <returns>Returns a list of all applications for the authorized user.</returns>
         public async Task<List<Application>> GetApplications(string token)
         {
@@ -80,9 +83,9 @@ namespace OakIdeas.AppHarbor.Api
         /// <summary>
         /// Create an application on the authorized user's account with the specified name. The slug is auto-generated based on the name.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="name">The name of the application.</param>
-        /// <param name="region">Provide amazon-web-services::us-east-1 or amazon-web-services::eu-west-1</param>
+        /// <param name="region">Provide amazon-web-services::us-east-1 or amazon-web-services::eu-west-1.</param>
         /// <returns></returns>
         public async Task<string> CreateApplication(string token, string name, string region)
         {
@@ -98,7 +101,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <summary>
         /// Update the information for an existing application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="name">The name of the application.</param>
         /// <returns></returns>
@@ -116,7 +119,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <summary>
         /// Remove an application from the authorized user's account.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         /// <remarks>Warning: this will irreversibly remove the application and the associated web site and add-ons.</remarks>
@@ -139,11 +142,11 @@ namespace OakIdeas.AppHarbor.Api
         // Builds
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieve the details for the specified build.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The build id.</param>
         /// <returns></returns>
         public async Task<Build> GetBuild(string token, string slug, string id)
         {
@@ -156,11 +159,11 @@ namespace OakIdeas.AppHarbor.Api
             return build;
         }
         /// <summary>
-        /// 
+        /// Retrieves a list of builds for the specified application, ordered by created in descending order. Item properties match the build detail response properties with the addition of the build detail URL.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <returns></returns>
+        /// <returns>List of builds.</returns>
         public async Task<List<Build>> GetBuilds(string token, string slug)
         {
             string applicationUrlSlugged = _applicationBuildsUrl.AddSlug(slug);
@@ -173,11 +176,11 @@ namespace OakIdeas.AppHarbor.Api
             return builds;
         }
         /// <summary>
-        /// 
+        /// Trigger a specific build for deployment.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The build id.</param>
         /// <returns></returns>
         public async Task<List<Build>> DeployBuild(string token, string slug, string id)
         {
@@ -198,14 +201,14 @@ namespace OakIdeas.AppHarbor.Api
 
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
-        // Collabortors
+        // Collaborators
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retreive the details for the specified collaborator.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The collaborator id.</param>
         /// <returns></returns>
         public async Task<Collaborator> GetCollaborator(string token, string slug, string id)
         {
@@ -219,9 +222,9 @@ namespace OakIdeas.AppHarbor.Api
             return collaborator;
         }
         /// <summary>
-        /// 
+        /// Retrieve a list of collaborators for an application, ordered by user name. Item properties match collaborator detail response properties with the addition of the detail URL.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         public async Task<List<Collaborator>> GetCollaborators(string token, string slug)
@@ -236,12 +239,12 @@ namespace OakIdeas.AppHarbor.Api
             return collaborators;
         }
         /// <summary>
-        /// 
+        /// Create a new collaborator on the application with the specified role.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="collaboratorEmail"></param>
-        /// <param name="role"></param>
+        /// <param name="collaboratorEmail">The email address of the collaborator to add.</param>
+        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
         /// <returns></returns>
         public async Task<string> CreateCollaborator(string token,string slug, string collaboratorEmail, string role)
         {
@@ -255,17 +258,41 @@ namespace OakIdeas.AppHarbor.Api
 
             return jsonString;
         }
+
         /// <summary>
-        /// 
+        /// Edit the details for an existing collaborator.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="collaboratorEmail"></param>
-        /// <param name="role"></param>
+        /// <param name="id">The collaborator id.</param>
+        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
         /// <returns></returns>
-        public async Task<string> DeleteCollaborator(string token, string slug, string collaboratorEmail, string role)
+        public async Task<Collaborator> UpdateCollaborator(string token, string slug, string id, string role)
         {
-            string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
+            string applicationCollaboratorSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
+
+            // This is the postdata
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("role", role));
+
+            string jsonString = await Put(token, applicationCollaboratorSlugged, postData);
+
+            Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
+
+
+            return collaborator;
+        }
+
+        /// <summary>
+        /// Delete the collaborator from the specified application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        /// <param name="id">The collaborator id.</param>
+        /// <returns></returns>
+        public async Task<string> DeleteCollaborator(string token, string slug, string id)
+        {
+            string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
             
             string jsonString = await Delete(token, applicationUrlSlugged);
 
@@ -281,11 +308,11 @@ namespace OakIdeas.AppHarbor.Api
         // Errors
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieve the details for the specified error.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The error id.</param>
         /// <returns></returns>
         public async Task<Error> GetError(string token, string slug, string id)
         {
@@ -295,13 +322,12 @@ namespace OakIdeas.AppHarbor.Api
 
             Error error = await JsonConvert.DeserializeObjectAsync<Error>(jsonString);
 
-
             return error;
         }
         /// <summary>
-        /// 
+        /// Retrieves a list of the latest unhandled exceptions for the application, in descending order by date. Item properties match the error detail response properties with the addition of the detail URL.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         public async Task<List<Error>> GetErrors(string token, string slug)
@@ -326,11 +352,11 @@ namespace OakIdeas.AppHarbor.Api
         // Configuration Variables
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieve the detail for the specified configuration variable.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The configuration variable id.</param>
         /// <returns></returns>
         public async Task<ConfigurationVariable> GetConfigurationVariable(string token, string slug, string id)
         {
@@ -344,9 +370,9 @@ namespace OakIdeas.AppHarbor.Api
             return configurationVariable;
         }
         /// <summary>
-        /// 
+        /// Retrieves the list of configuration variables for the application. The item properties are the same as the Configuration Variable detail with the addition of the URL for the detail of each item.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         public async Task<List<ConfigurationVariable>> GetConfigurationVariables(string token, string slug)
@@ -361,12 +387,12 @@ namespace OakIdeas.AppHarbor.Api
             return configurationVariables;
         }
         /// <summary>
-        /// 
+        /// Create a new configuration variable for the application with the specified key and value.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
+        /// <param name="key">The key or name.</param>
+        /// <param name="value">The value.</param>
         /// <returns></returns>
         public async Task<ConfigurationVariable> CreateConfigurationVariable(string token, string slug, string key, string value)
         {
@@ -384,13 +410,13 @@ namespace OakIdeas.AppHarbor.Api
             return configurationVariable;
         }
         /// <summary>
-        /// 
+        /// Edit the details for an existing configuration variable.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
+        /// <param name="id">The configuration variable id.</param>
+        /// <param name="key">The key or name.</param>
+        /// <param name="value">The value.</param>
         /// <returns></returns>
         public async Task<ConfigurationVariable> UpdateConfigurationVariable(string token, string slug, string id, string key, string value)
         {
@@ -405,15 +431,14 @@ namespace OakIdeas.AppHarbor.Api
 
             ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
-
             return configurationVariable;
         }
         /// <summary>
-        /// 
+        /// Delete the configuration variable from the specified application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The configuration variable id.</param>
         /// <returns></returns>
         public async Task<ConfigurationVariable> DeleteConfigurationVariable(string token, string slug, string id)
         {
@@ -437,11 +462,11 @@ namespace OakIdeas.AppHarbor.Api
         // Hostnames
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieves the settings for the specified hostname.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The hostname id.</param>
         /// <returns></returns>
         public async Task<Hostname> GetHostname(string token, string slug, string id)
         {
@@ -455,9 +480,9 @@ namespace OakIdeas.AppHarbor.Api
             return hostname;
         }
         /// <summary>
-        /// 
+        /// Retrieves a list of the current custom domains for the application. The item properties are the same as the hostname detail with the addition of the URL for the detail resource for each item.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         public async Task<List<Hostname>> GetHostnames(string token, string slug)
@@ -472,11 +497,12 @@ namespace OakIdeas.AppHarbor.Api
             return configurationVariables;
         }
         /// <summary>
-        /// 
+        /// Adds the specified domain name to the application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="value"></param>
+        /// <param name="value">The value.</param>
+        /// <remarks>IMPORTANT: Adding hostnames to an application incurs a cost, see the pricing page for details.</remarks>
         /// <returns></returns>
         public async Task<Hostname> CreateHostname(string token, string slug, string value)
         {
@@ -493,11 +519,11 @@ namespace OakIdeas.AppHarbor.Api
             return hostname;
         }
         /// <summary>
-        /// 
+        /// Delete a custom hostname from the application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The hostname id.</param>
         /// <returns></returns>
         public async Task<Hostname> DeleteHostname(string token, string slug, string id)
         {
@@ -519,12 +545,13 @@ namespace OakIdeas.AppHarbor.Api
         //---------------------------------------------------------------------------------------------------------------------
         // Service Hooks
         //---------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
-        /// 
+        /// Retrieve the details for an existing service hook.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The service hook id.</param>
         /// <returns></returns>
         public async Task<ServiceHook> GetServiceHook(string token, string slug, string id)
         {
@@ -537,9 +564,9 @@ namespace OakIdeas.AppHarbor.Api
             return serviceHook;
         }
         /// <summary>
-        /// 
+        /// Returns a list of service hooks for the specified application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         public async Task<List<ServiceHook>> GetServiceHooks(string token, string slug)
@@ -553,11 +580,11 @@ namespace OakIdeas.AppHarbor.Api
             return serviceHooks;
         }
         /// <summary>
-        /// 
+        /// Create a new service hook to receive requests for the specified application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="url"></param>
+        /// <param name="url">The URL to use for the service hook requests.</param>
         /// <returns></returns>
         public async Task<ServiceHook> CreateServiceHook(string token, string slug, string url)
         {
@@ -574,11 +601,11 @@ namespace OakIdeas.AppHarbor.Api
             return serviceHook;
         }
         /// <summary>
-        /// 
+        /// Remove the service hook from the specified application.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The service hook id.</param>
         /// <returns></returns>
         public async Task<ServiceHook> DeleteServiceHook(string token, string slug, string id)
         {
@@ -601,9 +628,9 @@ namespace OakIdeas.AppHarbor.Api
         // User
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieve the user details.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <returns></returns>
         public async Task<User> GetUser(string token)
         {
@@ -625,12 +652,13 @@ namespace OakIdeas.AppHarbor.Api
         // Tests
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieve the test detail for the specified build and test ID.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="buildId"></param>
-        /// <param name="id"></param>
+        /// <param name="buildId">The build id</param>
+        /// <param name="id">The test id</param>
+        /// <remarks>Test detail items are represented by a tree structure. The tests property for items of kind Group may contain either groups or tests. Items of type Test will have an empty list for the tests property as they cannot contain children.</remarks>
         /// <returns></returns>
         public async Task<Test> GetTest(string token, string slug, string buildId, string id)
         {
@@ -643,11 +671,11 @@ namespace OakIdeas.AppHarbor.Api
             return serviceHook;
         }
         /// <summary>
-        /// 
+        /// Returns a list of test history items for the specified build ordered and grouped by id.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="buildId"></param>
+        /// <param name="buildId">The build id</param>
         /// <returns></returns>
         public async Task<List<Test>> GetTests(string token, string slug, string buildId)
         {
@@ -669,14 +697,15 @@ namespace OakIdeas.AppHarbor.Api
         // Log
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Creates a log session. The log session is valid for 1 minute and has to be accessed before it expires. Keep the connection open to continue to retrieve log messages after that.
         /// </summary>
-        /// <param name="token">The access token</param>
+        /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="tail"></param>
-        /// <param name="limit"></param>
-        /// <param name="sourceFilter"></param>
-        /// <param name="processFilter"></param>
+        /// <param name="tail">Boolean value indicating whether you want to start a tail log session.</param>
+        /// <param name="limit">The number of logs to fetch on the initial request.</param>
+        /// <param name="sourceFilter">Only receive log messages from this source when specificed.</param>
+        /// <param name="processFilter">Only receive log messages from this process when specificed</param>
+        /// <remarks>IMPORTANT: Adding hostnames to an application incurs a cost, see the pricing page for details.</remarks>
         /// <returns></returns>
         public async Task<Drain> CreateLogSession(string token, string slug, string tail, string limit,
                                                         string sourceFilter, string processFilter)
@@ -706,11 +735,11 @@ namespace OakIdeas.AppHarbor.Api
         // Drains
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Retrieves the settings for the specified drain.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The drain id.</param>
         /// <returns></returns>
         public async Task<Drain> GetDrain(string token, string slug, string id)
         {
@@ -723,7 +752,7 @@ namespace OakIdeas.AppHarbor.Api
             return drain;
         }
         /// <summary>
-        /// 
+        /// Retrieves a list of drains for the application. The item properties are the same as the drain detail with the addition of the URL for the detail resource for each item.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
@@ -739,11 +768,11 @@ namespace OakIdeas.AppHarbor.Api
             return drains;
         }
         /// <summary>
-        /// 
+        /// Adds the specified drain url to the application.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="value"></param>
+        /// <param name="value">The drain url to add</param>
         /// <returns></returns>
         public async Task<Drain> CreateDrain(string token, string slug, string value)
         {
@@ -760,11 +789,11 @@ namespace OakIdeas.AppHarbor.Api
             return drain;
         }
         /// <summary>
-        /// 
+        /// Delete a drain from the application.
         /// </summary>
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id"></param>
+        /// <param name="id">The drain id</param>
         /// <returns></returns>
         public async Task<Drain> DeleteDrain(string token, string slug, string id)
         {
@@ -786,10 +815,10 @@ namespace OakIdeas.AppHarbor.Api
         // Http Requests
         //---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Executes a get request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="resource"></param>
+        /// <param name="resource">The resource name</param>
         /// <returns></returns>
         public async Task<string> Get(string token, string resource)
         {
@@ -799,10 +828,10 @@ namespace OakIdeas.AppHarbor.Api
             return await Get(token, uri);
         }
         /// <summary>
-        /// 
+        /// Executes a get request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="uri"></param>
+        /// <param name="uri">The api uri</param>
         /// <returns></returns>
         public async Task<string> Get(string token, Uri uri)
         {
@@ -817,11 +846,11 @@ namespace OakIdeas.AppHarbor.Api
             return await requestMessage.Content.ReadAsStringAsync();
         }
         /// <summary>
-        /// 
+        /// Executes a post request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="resource"></param>
-        /// <param name="postData"></param>
+        /// <param name="resource">The resource name</param>
+        /// <param name="postData">The data to be posted</param>
         /// <returns></returns>
         public async Task<string> Post(string token, string resource, List<KeyValuePair<string, string>> postData)
         {
@@ -831,11 +860,11 @@ namespace OakIdeas.AppHarbor.Api
             return await Post(token, uri, postData);
         }
         /// <summary>
-        /// 
+        /// Executes a post request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="uri"></param>
-        /// <param name="postData"></param>
+        /// <param name="uri">The api uri</param>
+        /// <param name="postData">The data to be posted</param>
         /// <returns></returns>
         public async Task<string> Post(string token, Uri uri, List<KeyValuePair<string, string>> postData)
         {
@@ -858,11 +887,11 @@ namespace OakIdeas.AppHarbor.Api
             return await requestMessage.Content.ReadAsStringAsync();
         }
         /// <summary>
-        /// 
+        /// Executes a put request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="resource"></param>
-        /// <param name="postData"></param>
+        /// <param name="resource">The resource name</param>
+        /// <param name="postData">The data for the update</param>
         /// <returns></returns>
         public async Task<string> Put(string token, string resource, List<KeyValuePair<string, string>> postData)
         {
@@ -872,11 +901,11 @@ namespace OakIdeas.AppHarbor.Api
             return await Put(token, uri, postData);
         }
         /// <summary>
-        /// 
+        /// Executes a put request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="uri"></param>
-        /// <param name="postData"></param>
+        /// <param name="uri">The api uri</param>
+        /// <param name="postData">The data for the update</param>
         /// <returns></returns>
         public async Task<string> Put(string token, Uri uri, List<KeyValuePair<string, string>> postData)
         {
@@ -894,10 +923,10 @@ namespace OakIdeas.AppHarbor.Api
             return await requestMessage.Content.ReadAsStringAsync();
         }
         /// <summary>
-        /// 
+        /// Executes a delete request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="resource"></param>
+        /// <param name="resource">The resource</param>
         /// <returns></returns>
         public async Task<string> Delete(string token, string resource)
         {
@@ -907,10 +936,10 @@ namespace OakIdeas.AppHarbor.Api
             return await Delete(token, uri);
         }
         /// <summary>
-        /// 
+        /// Executes a delete request
         /// </summary>
         /// <param name="token">The access token</param>
-        /// <param name="uri"></param>
+        /// <param name="uri">The api uri</param>
         /// <returns></returns>
         public async Task<string> Delete(string token, Uri uri)
         {

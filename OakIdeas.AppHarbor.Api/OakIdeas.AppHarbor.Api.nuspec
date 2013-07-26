@@ -7,7 +7,8 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <iconUrl>https://tjbhgg.blu.livefilestore.com/y2p3TGwhHRNaIik5A6BIfMtjVdx7i-o6Gwt_bNSyNgoRnsSOni0GyXYQv13PGkXlSMg-3MhgpwaNqWGKEw2Hy1ve85ml1EZejDSpazeps9ryBzGtl9fVp_eqDQGGTv2rvIH/oakideas32x32.png?psid=1</iconUrl>
-      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/oakcool/AppHarborApi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>   
     <copyright>Copyright 2013</copyright>
     <releaseNotes></releaseNotes>
