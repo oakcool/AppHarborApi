@@ -10,7 +10,7 @@ if not "%PackageVersion%" == "" (
 )
 
 REM Package restore
-.nuget\nuget.exe install Microsoft.Net.Http -OutputDirectory %cd%\packages -NonInteractive
+.nuget\nuget.exe install Microsoft.Net.Http -Version 2.2.13 -OutputDirectory %cd%\packages -NonInteractive
 
 REM Build
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild OakIdeas.AppHarbor.Api.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
