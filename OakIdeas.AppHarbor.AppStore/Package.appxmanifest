@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="a5caa36f-b250-488e-8611-000180c744a7" Publisher="CN=Oakcool" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>OakIdeas.AppHarbor.AppStore</DisplayName>
+    <PublisherDisplayName>Oakcool</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="OakIdeas.AppHarbor.AppStore.App">
+      <VisualElements DisplayName="OakIdeas.AppHarbor.AppStore" Logo="Assests\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="OakIdeas.AppHarbor.AppStore" ForegroundText="light" BackgroundColor="#D1D0CA">
+        <DefaultTile ShowName="allLogos" ShortName="App" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#D1D0CA" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
