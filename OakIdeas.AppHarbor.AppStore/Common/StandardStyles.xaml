@@ -33,11 +33,13 @@
     <!-- Brushes -->
     <SolidColorBrush x:Key="BlueColor" Color="#FF495E72"></SolidColorBrush>
     <SolidColorBrush x:Key="DarkBlueColor" Color="#FF183546"></SolidColorBrush>
+    <SolidColorBrush x:Key="BlueColorTransparent" Color="#99495E72"></SolidColorBrush>
+    <SolidColorBrush x:Key="DarkBlueColorTransparent" Color="#99183546"></SolidColorBrush>
     <SolidColorBrush x:Key="GreyColor" Color="#D1D0CA"></SolidColorBrush>
     
     <LinearGradientBrush x:Key="GradientBlueBrush" EndPoint="0,0" StartPoint="0.5,0.5">
-        <GradientStop Color="#FF173445" Offset="0" />
-        <GradientStop Color="#FF475B6D" Offset="1" />
+        <GradientStop Color="#99173445" Offset="0" />
+        <GradientStop Color="#99475B6D" Offset="1" />
     </LinearGradientBrush>
 
     <ImageBrush x:Key="BackgroundBrush" ImageSource="ms-appx:///Assets/PanoramaBackground.png"></ImageBrush>

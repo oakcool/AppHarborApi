@@ -14,7 +14,7 @@
 
     <Page.Resources>
 
-        
+
     </Page.Resources>
 
     <!--
@@ -25,6 +25,7 @@
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -37,22 +38,24 @@
             <Button x:Name="backButton" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <GridView Grid.Row="1" 
+        <TextBlock Grid.Row="1" Margin="120,0,0,0" Style="{StaticResource ItemTextStyle}"  HorizontalAlignment="Stretch" Text="{Binding Message}" ToolTipService.ToolTip="{Binding Message}"/>
+        <GridView Grid.Row="2" 
                   Margin="120,10,0,0" 
                   SelectionMode="None" 
                   ItemsSource="{Binding Applications}"
-                  beh:ItemClickToCommandBehavior.Command="{Binding Application}"
+                  beh:ItemClickToCommandBehavior.Command="{Binding NavCommand}"
                   IsItemClickEnabled="True">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="10,10,10,10" BorderBrush="{StaticResource BlueColor}" Background="{StaticResource GradientBlueBrush}" BorderThickness="1.5" CornerRadius="8" >
-                    <Grid Height="500"
-                          Width="250"
+                        <Grid Height="500"
+                          Width="400"
                           HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="3"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Margin="10">
                                 <Grid.ColumnDefinitions>
@@ -65,70 +68,85 @@
                                        HorizontalAlignment="Left"/>
                             </Grid>
                             <StackPanel  Grid.Row="1" >
-                                <Border BorderBrush="{StaticResource DarkBlueColor}" BorderThickness="1" />
-                                <Border BorderBrush="{StaticResource BlueColor}" BorderThickness="2" />
-
+                                <Border BorderBrush="{StaticResource DarkBlueColorTransparent}" BorderThickness="0.5" />
+                                <Border BorderBrush="{StaticResource BlueColorTransparent}" BorderThickness="1" />
                             </StackPanel>
-                             <StackPanel Grid.Row="2"  Margin="10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="30"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                            <StackPanel Grid.Row="2"  Margin="10">
+                                <Grid Grid.Row="2" Margin="15,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="170"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Builds"
+                                    <Image HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/Key.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Slug"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding BuildCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Slug}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Errors"
+                                    <Image Grid.Row="1"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/BuildSymbol.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Builds"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ErrorCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding BuildCount}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Config. Variables"
+                                    <Image Grid.Row="2"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/Error.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="Errors"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ConfigurationVariablesCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding ErrorCount}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Collaborators"
+                                    <Image Grid.Row="3"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/Configuration.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="3" Text="Configuration Variables"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding CollaboratorsCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding ConfigurationVariablesCount}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Host-names"
+                                    <Image Grid.Row="4"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/Collaborator.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="4" Text="Collaborators"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding HostnamesCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding CollaboratorsCount}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="5" Text="ServiceHooks"
+                                    <Image Grid.Row="5"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/ServiceHost.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="5" Text="Host-names"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding ServiceHooksCount}"
+                                    <TextBlock Grid.Column="2" Grid.Row="5" Text="{Binding HostnamesCount}"
+                                       Style="{StaticResource ItemTextStyle}"
+                                       HorizontalAlignment="Left"/>
+                                    <Image Grid.Row="6"  HorizontalAlignment="Center" Height="15" VerticalAlignment="Center" Width="15" Source="ms-appx:///Assets/Hook.png"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="6" Text="ServiceHooks"
+                                       Style="{StaticResource ItemTextStyle}"
+                                       HorizontalAlignment="Left"/>
+                                    <TextBlock Grid.Column="2" Grid.Row="6" Text="{Binding ServiceHooksCount}"
                                        Style="{StaticResource ItemTextStyle}"
                                        HorizontalAlignment="Left"/>
                                 </Grid>
-                                
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                            <TextBlock Grid.Row="3" Margin="10,0" Style="{StaticResource ItemTextStyle}"  HorizontalAlignment="Stretch" Text="{Binding ApplicationMessage}" ToolTipService.ToolTip="{Binding ApplicationMessage}"/>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
         
+
 
         <VisualStateManager.VisualStateGroups>
 

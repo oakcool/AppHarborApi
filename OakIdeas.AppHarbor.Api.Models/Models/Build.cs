@@ -66,7 +66,7 @@ namespace OakIdeas.AppHarbor.Api.Models
         }
 
         private List<LogEnty> _logEnties;
-            [JsonProperty("log_entries")]
+        [JsonProperty("log_entries")]
         public List<LogEnty> LogEnties
         {
             get { return _logEnties ?? (_logEnties = new List<LogEnty>()); }

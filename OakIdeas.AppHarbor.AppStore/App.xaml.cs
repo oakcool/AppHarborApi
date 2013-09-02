@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Microsoft.Practices.Unity;
+using OakIdeas.AppHarbor.AppStore.Common;
+using OakIdeas.AppHarbor.AppStore.ViewModels;
 using OakIdeas.AppHarbor.AppStore.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -25,6 +30,7 @@ namespace OakIdeas.AppHarbor.AppStore
     /// </summary>
     sealed partial class App : MvvmAppBase
     {
+        IUnityContainer _container = new UnityContainer();
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -35,9 +41,25 @@ namespace OakIdeas.AppHarbor.AppStore
             
         }
 
-        protected override void OnLaunchApplication(LaunchActivatedEventArgs args)
+        protected override void OnInitialize(IActivatedEventArgs args)
         {
+            base.OnInitialize(args);
+            //ViewModelLocator.Register(typeof(MainPage).ToString(), ()=> new MainPageViewModel(NavigationService) );
+            _container.RegisterInstance<INavigationService>(NavigationService);
+            ViewModelLocator.SetDefaultViewModelFactory((viewModelType) => _container.Resolve(viewModelType));
+        }
+
+        protected async override void OnLaunchApplication(LaunchActivatedEventArgs args)
+        {
+            await CheckValidation();
+
             NavigationService.Navigate("Main", null);
         }
+
+        private async static Task CheckValidation()
+        {
+            await AuthenticationService.Instance.CheckAndGetAccessToken();
+        }
+
     }
 }

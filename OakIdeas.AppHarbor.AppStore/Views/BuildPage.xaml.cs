@@ -13,19 +13,18 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace OakIdeas.AppHarbor.AppStore.Views
 {
     /// <summary>
-    /// A basic page that provides characteristics common to most applications.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApplicationDetail : VisualStateAwarePage
+    public sealed partial class BuildPage : VisualStateAwarePage
     {
-        public ApplicationDetail()
+        public BuildPage()
         {
             this.InitializeComponent();
         }
-
     }
 }
