@@ -47,6 +47,13 @@ namespace OakIdeas.AppHarbor.Api
             get { return instance ?? (instance = new AppHarborApi()); }
         }
         
+        /// <summary>
+        /// Gets anything based to the type you pass
+        /// </summary>
+        /// <typeparam name="T">What you want to get</typeparam>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The url of the resource</param>
+        /// <returns></returns>
         public async Task<T> GetThing<T>(string token, string url)
         {
             string jsonString = await Get(token, url);
