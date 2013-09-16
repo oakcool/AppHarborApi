@@ -46,7 +46,16 @@ namespace OakIdeas.AppHarbor.Api
         {
             get { return instance ?? (instance = new AppHarborApi()); }
         }
-        
+
+        public async Task<T> GetThing<T>(string token, string url)
+        {
+            string jsonString = await Get(token, url);
+
+            T serviceHooks = await JsonConvert.DeserializeObjectAsync<T>(jsonString);
+
+            return serviceHooks;
+        }
+
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
         // Application
@@ -682,6 +691,15 @@ namespace OakIdeas.AppHarbor.Api
             string applicationUrlSlugged = _applicationBuildTestsUrl.AddSlug(slug).AddBuildId(buildId);
 
             string jsonString = await Get(token, applicationUrlSlugged);
+
+            List<Test> serviceHooks = await JsonConvert.DeserializeObjectAsync<List<Test>>(jsonString);
+
+            return serviceHooks;
+        }
+
+        public async Task<List<Test>> GetTests(string token, string url)
+        {          
+            string jsonString = await Get(token, url);
 
             List<Test> serviceHooks = await JsonConvert.DeserializeObjectAsync<List<Test>>(jsonString);
 

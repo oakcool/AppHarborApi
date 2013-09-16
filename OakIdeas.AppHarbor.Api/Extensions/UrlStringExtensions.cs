@@ -22,7 +22,7 @@ namespace OakIdeas.AppHarbor.Api.Extensions
         {
             return url.Replace("{buildId}", buildId);
         }
-        
+
         public static Uri ToUri(this string url)
         {
             Uri uri = new Uri(url);
