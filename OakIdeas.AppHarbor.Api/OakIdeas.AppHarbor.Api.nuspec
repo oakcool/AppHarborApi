@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>   
     <copyright>Copyright 2013</copyright>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Added GetThing method to enable getting object by URL</releaseNotes>
     <tags>AppHarbor Portable Class Library Async PCL</tags>
     <dependencies>
       <dependency  id="Newtonsoft.Json" version="5.0.6" />
