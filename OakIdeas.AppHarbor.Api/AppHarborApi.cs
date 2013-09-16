@@ -47,6 +47,15 @@ namespace OakIdeas.AppHarbor.Api
             get { return instance ?? (instance = new AppHarborApi()); }
         }
         
+        public async Task<T> GetThing<T>(string token, string url)
+        {
+            string jsonString = await Get(token, url);
+
+            T serviceHooks = await JsonConvert.DeserializeObjectAsync<T>(jsonString);
+
+            return serviceHooks;
+        }
+
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
         // Application
