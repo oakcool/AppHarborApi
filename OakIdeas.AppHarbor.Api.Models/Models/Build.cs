@@ -6,13 +6,6 @@ namespace OakIdeas.AppHarbor.Api.Models
 {
     public class Build : BaseObject
     {
-        private string _id;
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
         private string _status;
         public string Status
         {
