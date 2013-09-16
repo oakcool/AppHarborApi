@@ -14,7 +14,7 @@
     <releaseNotes>Added GetThing method to enable getting object by URL </releaseNotes>
     <tags>AppHarbor Portable Class Library Async PCL</tags>
     <dependencies>
-      <dependency  id="Newtonsoft.Json" version="5.0.6" />
+      <dependency id="Newtonsoft.Json" version="5.0.6" />
       <dependency id="PCLWebUtility" version="1.0.2" />
       <dependency id="Microsoft.Net.Http" version="2.2.13" />      
       <dependency id="OakIdeas.AppHarbor.Api.Models" />

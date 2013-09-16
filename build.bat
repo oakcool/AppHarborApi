@@ -14,7 +14,7 @@ REM Package restore
 
 REM Build
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild OakIdeas.AppHarbor.Api.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
-
+ 
 REM Package
 mkdir Build
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.csproj" -symbols -o Build -p Configuration=%config% %version%
