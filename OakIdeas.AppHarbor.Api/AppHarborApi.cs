@@ -198,17 +198,24 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The build id.</param>
         /// <returns></returns>
-        public async Task<List<Build>> DeployBuild(string token, string slug, string id)
+        public async Task DeployBuild(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationBuildDeployUrl.AddSlug(slug).AddId(id);
 
             string jsonString = await Post(token, applicationUrlSlugged, null);
-
-            List<Build> builds = await JsonConvert.DeserializeObjectAsync<List<Build>>(jsonString);
-
-
-            return builds;
         }
+        /// <summary>
+        /// Trigger a specific build for deployment.
+        /// </summary>
+        /// <param name="url">The access token.</param>        
+        /// <returns></returns>
+        public async Task DeployBuild(string token, string url)
+        {
+            string applicationUrlSlugged = String.Format("{0}/deploy", url);
+
+            string jsonString = await Post(token, applicationUrlSlugged, null);
+        }
+
 
         //---------------------------------------------------------------------------------------------------------------------
         // Builds

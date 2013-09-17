@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api", "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.csproj", "{4347C736-A78F-4221-9B0B-FD0F55ECFF0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Models", "OakIdeas.AppHarbor.Api.Models\OakIdeas.AppHarbor.Api.Models.csproj", "{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}"
@@ -17,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.bat = build.bat
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Tests", "OakIdeas.AppHarbor.Api.Tests\OakIdeas.AppHarbor.Api.Tests.csproj", "{887DB38A-0EF0-492F-974E-6CABE75272C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,16 @@ Global
 		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Release|ARM.ActiveCfg = Release|Any CPU
 		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Release|x64.ActiveCfg = Release|Any CPU
 		{BEC8A5F0-BD94-4C84-A73F-F449357FBD67}.Release|x86.ActiveCfg = Release|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{887DB38A-0EF0-492F-974E-6CABE75272C5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
