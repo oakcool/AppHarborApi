@@ -54,9 +54,9 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="url">The url of the resource</param>
         /// <returns></returns>
-        public async Task<T> GetThing<T>(string token, string url)
+        public async Task<T> GetThingAsync<T>(string token, string url)
         {
-            string jsonString = await Get(token, url);
+            string jsonString = await GetAsync(token, url);
 
             T serviceHooks = await JsonConvert.DeserializeObjectAsync<T>(jsonString);
 
@@ -73,10 +73,10 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">>The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns>Retrieve the information associated with the specified application slug.</returns>
-        public async Task<Application> GetApplication(string token, string slug)
+        public async Task<Application> GetApplicationAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationUrl.AddSlug(slug);
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
             
             Application application = await JsonConvert.DeserializeObjectAsync<Application>(jsonString);
 
@@ -87,9 +87,9 @@ namespace OakIdeas.AppHarbor.Api
         /// </summary>
         /// <param name="token">The access token.</param>
         /// <returns>Returns a list of all applications for the authorized user.</returns>
-        public async Task<List<Application>> GetApplications(string token)
+        public async Task<List<Application>> GetApplicationsAsync(string token)
         {
-            string jsonString = await Get(token, _applicationsUrl);
+            string jsonString = await GetAsync(token, _applicationsUrl);
 
             List<Application> applications = await JsonConvert.DeserializeObjectAsync<List<Application>>(jsonString);
 
@@ -103,14 +103,14 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="name">The name of the application.</param>
         /// <param name="region">Provide amazon-web-services::us-east-1 or amazon-web-services::eu-west-1.</param>
         /// <returns></returns>
-        public async Task<string> CreateApplication(string token, string name, string region)
+        public async Task<string> CreateApplicationAsync(string token, string name, string region)
         {
             // This is the postdata
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("name", name));
             postData.Add(new KeyValuePair<string, string>("region_identifier", region));
 
-            string jsonString = await Post(token, _applicationsUrl, postData);
+            string jsonString = await PostAsync(token, _applicationsUrl, postData);
 
             return jsonString;
         }
@@ -121,14 +121,14 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="name">The name of the application.</param>
         /// <returns></returns>
-        public async Task<string> UpdateApplication(string token,string slug, string name)
+        public async Task<string> UpdateApplicationAsync(string token, string slug, string name)
         {
             string applicationUrlSlugged = _applicationUrl.AddSlug(slug);
             // This is the postdata
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("name", name));
 
-            string jsonString = await Put(token, applicationUrlSlugged, postData);
+            string jsonString = await PutAsync(token, applicationUrlSlugged, postData);
 
             return jsonString;
         }
@@ -139,11 +139,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
         /// <remarks>Warning: this will irreversibly remove the application and the associated web site and add-ons.</remarks>
-        public async Task<string> DeleteApplication(string token, string slug)
+        public async Task<string> DeleteApplicationAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationUrl.AddSlug(slug);
 
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             return jsonString;
         }
@@ -164,11 +164,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The build id.</param>
         /// <returns></returns>
-        public async Task<Build> GetBuild(string token, string slug, string id)
+        public async Task<Build> GetBuildAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationBuildUrl.AddSlug(slug).AddId(id);
             
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
             
             Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
 
@@ -180,11 +180,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns>List of builds.</returns>
-        public async Task<List<Build>> GetBuilds(string token, string slug)
+        public async Task<List<Build>> GetBuildsAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationBuildsUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Build> builds = await JsonConvert.DeserializeObjectAsync<List<Build>>(jsonString);
 
@@ -198,22 +198,22 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The build id.</param>
         /// <returns></returns>
-        public async Task DeployBuild(string token, string slug, string id)
+        public async Task DeployBuildAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationBuildDeployUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Post(token, applicationUrlSlugged, null);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, null);
         }
         /// <summary>
         /// Trigger a specific build for deployment.
         /// </summary>
         /// <param name="url">The access token.</param>        
         /// <returns></returns>
-        public async Task DeployBuild(string token, string url)
+        public async Task DeployBuildAsync(string token, string url)
         {
             string applicationUrlSlugged = String.Format("{0}/deploy", url);
 
-            string jsonString = await Post(token, applicationUrlSlugged, null);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, null);
         }
 
 
@@ -233,11 +233,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The collaborator id.</param>
         /// <returns></returns>
-        public async Task<Collaborator> GetCollaborator(string token, string slug, string id)
+        public async Task<Collaborator> GetCollaboratorAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationCollaboratorUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
 
@@ -250,11 +250,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<Collaborator>> GetCollaborators(string token, string slug)
+        public async Task<List<Collaborator>> GetCollaboratorsAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Collaborator> collaborators = await JsonConvert.DeserializeObjectAsync<List<Collaborator>>(jsonString);
 
@@ -269,7 +269,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="collaboratorEmail">The email address of the collaborator to add.</param>
         /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
         /// <returns></returns>
-        public async Task<string> CreateCollaborator(string token,string slug, string collaboratorEmail, string role)
+        public async Task<string> CreateCollaboratorAsync(string token, string slug, string collaboratorEmail, string role)
         {
             string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
             // This is the postdata
@@ -277,7 +277,7 @@ namespace OakIdeas.AppHarbor.Api
             postData.Add(new KeyValuePair<string, string>("collaboratorEmail", collaboratorEmail));
             postData.Add(new KeyValuePair<string, string>("role", role));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             return jsonString;
         }
@@ -290,7 +290,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="id">The collaborator id.</param>
         /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
         /// <returns></returns>
-        public async Task<Collaborator> UpdateCollaborator(string token, string slug, string id, string role)
+        public async Task<Collaborator> UpdateCollaboratorAsync(string token, string slug, string id, string role)
         {
             string applicationCollaboratorSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
 
@@ -298,7 +298,7 @@ namespace OakIdeas.AppHarbor.Api
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("role", role));
 
-            string jsonString = await Put(token, applicationCollaboratorSlugged, postData);
+            string jsonString = await PutAsync(token, applicationCollaboratorSlugged, postData);
 
             Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
 
@@ -313,11 +313,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The collaborator id.</param>
         /// <returns></returns>
-        public async Task<string> DeleteCollaborator(string token, string slug, string id)
+        public async Task<string> DeleteCollaboratorAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
             
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             return jsonString;
         }
@@ -337,11 +337,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The error id.</param>
         /// <returns></returns>
-        public async Task<Error> GetError(string token, string slug, string id)
+        public async Task<Error> GetErrorAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationErrorUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             Error error = await JsonConvert.DeserializeObjectAsync<Error>(jsonString);
 
@@ -353,11 +353,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<Error>> GetErrors(string token, string slug)
+        public async Task<List<Error>> GetErrorsAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationErrorsUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Error> errors = await JsonConvert.DeserializeObjectAsync<List<Error>>(jsonString);
 
@@ -381,11 +381,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The configuration variable id.</param>
         /// <returns></returns>
-        public async Task<ConfigurationVariable> GetConfigurationVariable(string token, string slug, string id)
+        public async Task<ConfigurationVariable> GetConfigurationVariableAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
@@ -398,11 +398,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<ConfigurationVariable>> GetConfigurationVariables(string token, string slug)
+        public async Task<List<ConfigurationVariable>> GetConfigurationVariablesAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<ConfigurationVariable> configurationVariables = await JsonConvert.DeserializeObjectAsync<List<ConfigurationVariable>>(jsonString);
 
@@ -417,7 +417,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="key">The key or name.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public async Task<ConfigurationVariable> CreateConfigurationVariable(string token, string slug, string key, string value)
+        public async Task<ConfigurationVariable> CreateConfigurationVariableAsync(string token, string slug, string key, string value)
         {
             string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
 
@@ -426,7 +426,7 @@ namespace OakIdeas.AppHarbor.Api
             postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
             postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
@@ -441,7 +441,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="key">The key or name.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public async Task<ConfigurationVariable> UpdateConfigurationVariable(string token, string slug, string id, string key, string value)
+        public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string slug, string id, string key, string value)
         {
             string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
@@ -450,7 +450,7 @@ namespace OakIdeas.AppHarbor.Api
             postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ","_")));
             postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await Put(token, applicationUrlSlugged, postData);
+            string jsonString = await PutAsync(token, applicationUrlSlugged, postData);
 
             ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
@@ -463,11 +463,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The configuration variable id.</param>
         /// <returns></returns>
-        public async Task<ConfigurationVariable> DeleteConfigurationVariable(string token, string slug, string id)
+        public async Task<ConfigurationVariable> DeleteConfigurationVariableAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
@@ -491,11 +491,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The hostname id.</param>
         /// <returns></returns>
-        public async Task<Hostname> GetHostname(string token, string slug, string id)
+        public async Task<Hostname> GetHostnameAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationHostnameUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             Hostname hostname = await JsonConvert.DeserializeObjectAsync<Hostname>(jsonString);
 
@@ -508,11 +508,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<Hostname>> GetHostnames(string token, string slug)
+        public async Task<List<Hostname>> GetHostnamesAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationHostnamesUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Hostname> configurationVariables = await JsonConvert.DeserializeObjectAsync<List<Hostname>>(jsonString);
 
@@ -527,7 +527,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="value">The value.</param>
         /// <remarks>IMPORTANT: Adding hostnames to an application incurs a cost, see the pricing page for details.</remarks>
         /// <returns></returns>
-        public async Task<Hostname> CreateHostname(string token, string slug, string value)
+        public async Task<Hostname> CreateHostnameAsync(string token, string slug, string value)
         {
             string applicationUrlSlugged = _applicationHostnamesUrl.AddSlug(slug);
 
@@ -535,7 +535,7 @@ namespace OakIdeas.AppHarbor.Api
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             Hostname hostname = await JsonConvert.DeserializeObjectAsync<Hostname>(jsonString);
 
@@ -548,11 +548,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The hostname id.</param>
         /// <returns></returns>
-        public async Task<Hostname> DeleteHostname(string token, string slug, string id)
+        public async Task<Hostname> DeleteHostnameAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationHostnameUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             Hostname hostname = await JsonConvert.DeserializeObjectAsync<Hostname>(jsonString);
 
@@ -576,11 +576,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The service hook id.</param>
         /// <returns></returns>
-        public async Task<ServiceHook> GetServiceHook(string token, string slug, string id)
+        public async Task<ServiceHook> GetServiceHookAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationServiceHookUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             ServiceHook serviceHook = await JsonConvert.DeserializeObjectAsync<ServiceHook>(jsonString);
 
@@ -592,11 +592,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token.</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<ServiceHook>> GetServiceHooks(string token, string slug)
+        public async Task<List<ServiceHook>> GetServiceHooksAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationServiceHooksUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<ServiceHook> serviceHooks = await JsonConvert.DeserializeObjectAsync<List<ServiceHook>>(jsonString);
 
@@ -609,7 +609,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="url">The URL to use for the service hook requests.</param>
         /// <returns></returns>
-        public async Task<ServiceHook> CreateServiceHook(string token, string slug, string url)
+        public async Task<ServiceHook> CreateServiceHookAsync(string token, string slug, string url)
         {
             string applicationUrlSlugged = _applicationServiceHooksUrl.AddSlug(slug);
 
@@ -617,7 +617,7 @@ namespace OakIdeas.AppHarbor.Api
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("url", url));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             ServiceHook serviceHook = await JsonConvert.DeserializeObjectAsync<ServiceHook>(jsonString);
 
@@ -630,11 +630,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The service hook id.</param>
         /// <returns></returns>
-        public async Task<ServiceHook> DeleteServiceHook(string token, string slug, string id)
+        public async Task<ServiceHook> DeleteServiceHookAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationServiceHookUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             ServiceHook serviceHook = await JsonConvert.DeserializeObjectAsync<ServiceHook>(jsonString);
 
@@ -655,11 +655,11 @@ namespace OakIdeas.AppHarbor.Api
         /// </summary>
         /// <param name="token">The access token.</param>
         /// <returns></returns>
-        public async Task<User> GetUser(string token)
+        public async Task<User> GetUserAsync(string token)
         {
             string applicationUrlSlugged = _userUrl;
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             User user = await JsonConvert.DeserializeObjectAsync<User>(jsonString);
 
@@ -683,11 +683,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="id">The test id</param>
         /// <remarks>Test detail items are represented by a tree structure. The tests property for items of kind Group may contain either groups or tests. Items of type Test will have an empty list for the tests property as they cannot contain children.</remarks>
         /// <returns></returns>
-        public async Task<Test> GetTest(string token, string slug, string buildId, string id)
+        public async Task<Test> GetTestAsync(string token, string slug, string buildId, string id)
         {
             string applicationUrlSlugged = _applicationBuildTestUrl.AddSlug(slug).AddBuildId(buildId).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             Test serviceHook = await JsonConvert.DeserializeObjectAsync<Test>(jsonString);
 
@@ -700,11 +700,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="buildId">The build id</param>
         /// <returns></returns>
-        public async Task<List<Test>> GetTests(string token, string slug, string buildId)
+        public async Task<List<Test>> GetTestsAsync(string token, string slug, string buildId)
         {
             string applicationUrlSlugged = _applicationBuildTestsUrl.AddSlug(slug).AddBuildId(buildId);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Test> serviceHooks = await JsonConvert.DeserializeObjectAsync<List<Test>>(jsonString);
 
@@ -730,7 +730,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="processFilter">Only receive log messages from this process when specificed</param>
         /// <remarks>IMPORTANT: Adding hostnames to an application incurs a cost, see the pricing page for details.</remarks>
         /// <returns></returns>
-        public async Task<Drain> CreateLogSession(string token, string slug, string tail, string limit,
+        public async Task<Drain> CreateLogSessionAsync(string token, string slug, string tail, string limit,
                                                         string sourceFilter, string processFilter)
         {
             string applicationUrlSlugged = _applicationLogSessionUrl.AddSlug(slug);
@@ -742,7 +742,7 @@ namespace OakIdeas.AppHarbor.Api
             postData.Add(new KeyValuePair<string, string>("sourceFilter", sourceFilter));
             postData.Add(new KeyValuePair<string, string>("processFilter", processFilter));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             Drain drain = await JsonConvert.DeserializeObjectAsync<Drain>(jsonString);
 
@@ -764,11 +764,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The drain id.</param>
         /// <returns></returns>
-        public async Task<Drain> GetDrain(string token, string slug, string id)
+        public async Task<Drain> GetDrainAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationDrainUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             Drain drain = await JsonConvert.DeserializeObjectAsync<Drain>(jsonString);
 
@@ -780,11 +780,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token</param>
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <returns></returns>
-        public async Task<List<Drain>> GetDrains(string token, string slug)
+        public async Task<List<Drain>> GetDrainsAsync(string token, string slug)
         {
             string applicationUrlSlugged = _applicationDrainsUrl.AddSlug(slug);
 
-            string jsonString = await Get(token, applicationUrlSlugged);
+            string jsonString = await GetAsync(token, applicationUrlSlugged);
 
             List<Drain> drains = await JsonConvert.DeserializeObjectAsync<List<Drain>>(jsonString);
 
@@ -797,7 +797,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="value">The drain url to add</param>
         /// <returns></returns>
-        public async Task<Drain> CreateDrain(string token, string slug, string value)
+        public async Task<Drain> CreateDrainAsync(string token, string slug, string value)
         {
             string applicationUrlSlugged = _applicationDrainsUrl.AddSlug(slug);
 
@@ -805,7 +805,7 @@ namespace OakIdeas.AppHarbor.Api
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await Post(token, applicationUrlSlugged, postData);
+            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
             Drain drain = await JsonConvert.DeserializeObjectAsync<Drain>(jsonString);
 
@@ -818,11 +818,11 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The drain id</param>
         /// <returns></returns>
-        public async Task<Drain> DeleteDrain(string token, string slug, string id)
+        public async Task<Drain> DeleteDrainAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationDrainUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await Delete(token, applicationUrlSlugged);
+            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
             Drain drain = await JsonConvert.DeserializeObjectAsync<Drain>(jsonString);
 
@@ -844,12 +844,12 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token</param>
         /// <param name="resource">The resource name</param>
         /// <returns></returns>
-        public async Task<string> Get(string token, string resource)
+        public async Task<string> GetAsync(string token, string resource)
         {
             Uri baseUri = new Uri(_baseUrl);
             Uri uri = new Uri(baseUri,resource);
 
-            return await Get(token, uri);
+            return await GetAsync(token, uri);
         }
         /// <summary>
         /// Executes a get request
@@ -857,7 +857,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token</param>
         /// <param name="uri">The api uri</param>
         /// <returns></returns>
-        public async Task<string> Get(string token, Uri uri)
+        public async Task<string> GetAsync(string token, Uri uri)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(
@@ -876,12 +876,12 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="resource">The resource name</param>
         /// <param name="postData">The data to be posted</param>
         /// <returns></returns>
-        public async Task<string> Post(string token, string resource, List<KeyValuePair<string, string>> postData)
+        public async Task<string> PostAsync(string token, string resource, List<KeyValuePair<string, string>> postData)
         {
             Uri baseUri = new Uri(_baseUrl);
             Uri uri = new Uri(baseUri, resource);
 
-            return await Post(token, uri, postData);
+            return await PostAsync(token, uri, postData);
         }
         /// <summary>
         /// Executes a post request
@@ -890,7 +890,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="uri">The api uri</param>
         /// <param name="postData">The data to be posted</param>
         /// <returns></returns>
-        public async Task<string> Post(string token, Uri uri, List<KeyValuePair<string, string>> postData)
+        public async Task<string> PostAsync(string token, Uri uri, List<KeyValuePair<string, string>> postData)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(
@@ -917,12 +917,12 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="resource">The resource name</param>
         /// <param name="postData">The data for the update</param>
         /// <returns></returns>
-        public async Task<string> Put(string token, string resource, List<KeyValuePair<string, string>> postData)
+        public async Task<string> PutAsync(string token, string resource, List<KeyValuePair<string, string>> postData)
         {
             Uri baseUri = new Uri(_baseUrl);
             Uri uri = new Uri(baseUri, resource);
 
-            return await Put(token, uri, postData);
+            return await PutAsync(token, uri, postData);
         }
         /// <summary>
         /// Executes a put request
@@ -931,7 +931,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="uri">The api uri</param>
         /// <param name="postData">The data for the update</param>
         /// <returns></returns>
-        public async Task<string> Put(string token, Uri uri, List<KeyValuePair<string, string>> postData)
+        public async Task<string> PutAsync(string token, Uri uri, List<KeyValuePair<string, string>> postData)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(
@@ -952,12 +952,12 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token</param>
         /// <param name="resource">The resource</param>
         /// <returns></returns>
-        public async Task<string> Delete(string token, string resource)
+        public async Task<string> DeleteAsync(string token, string resource)
         {
             Uri baseUri = new Uri(_baseUrl);
             Uri uri = new Uri(baseUri, resource);
 
-            return await Delete(token, uri);
+            return await DeleteAsync(token, uri);
         }
         /// <summary>
         /// Executes a delete request
@@ -965,7 +965,7 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="token">The access token</param>
         /// <param name="uri">The api uri</param>
         /// <returns></returns>
-        public async Task<string> Delete(string token, Uri uri)
+        public async Task<string> DeleteAsync(string token, Uri uri)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(
