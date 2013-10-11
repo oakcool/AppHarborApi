@@ -132,6 +132,25 @@ namespace OakIdeas.AppHarbor.Api
 
             return jsonString;
         }
+
+        /// <summary>
+        /// Update the information for an existing application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <param name="name">The name of the application.</param>
+        /// <returns></returns>
+        public async Task<string> UpdateApplicationWithUrlAsync(string token, string url, string name)
+        {            
+            // This is the postdata
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("name", name));
+
+            string jsonString = await PutAsync(token, url, postData);
+
+            return jsonString;
+        }
+
         /// <summary>
         /// Remove an application from the authorized user's account.
         /// </summary>
@@ -144,6 +163,20 @@ namespace OakIdeas.AppHarbor.Api
             string applicationUrlSlugged = _applicationUrl.AddSlug(slug);
 
             string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+
+            return jsonString;
+        }
+
+        /// <summary>
+        /// Remove an application from the authorized user's account.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        /// <remarks>Warning: this will irreversibly remove the application and the associated web site and add-ons.</remarks>
+        public async Task<string> DeleteApplicationWithUrlAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
 
             return jsonString;
         }
@@ -261,6 +294,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return collaborators;
         }
+
         /// <summary>
         /// Create a new collaborator on the application with the specified role.
         /// </summary>
@@ -281,7 +315,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return jsonString;
         }
-
+        
         /// <summary>
         /// Edit the details for an existing collaborator.
         /// </summary>
@@ -307,6 +341,27 @@ namespace OakIdeas.AppHarbor.Api
         }
 
         /// <summary>
+        /// Edit the details for an existing collaborator.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL        
+        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
+        /// <returns></returns>
+        public async Task<Collaborator> UpdateCollaboratorAsync(string token, string url, string role)
+        {            
+            // This is the postdata
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("role", role));
+
+            string jsonString = await PutAsync(token, url, postData);
+
+            Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
+
+
+            return collaborator;
+        }
+        
+        /// <summary>
         /// Delete the collaborator from the specified application.
         /// </summary>
         /// <param name="token">The access token.</param>
@@ -318,6 +373,20 @@ namespace OakIdeas.AppHarbor.Api
             string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
             
             string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+
+            return jsonString;
+        }
+
+        
+        /// <summary>
+        /// Delete the collaborator from the specified application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL        
+        /// <returns></returns>
+        public async Task<string> DeleteCollaboratorAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
 
             return jsonString;
         }
@@ -456,6 +525,29 @@ namespace OakIdeas.AppHarbor.Api
 
             return configurationVariable;
         }
+
+        /// <summary>
+        /// Edit the details for an existing configuration variable.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <param name="key">The key or name.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string url, string key, string value)
+        {
+            // This is the postdata
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
+            postData.Add(new KeyValuePair<string, string>("value", value));
+
+            string jsonString = await PutAsync(token, url, postData);
+
+            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
+
+            return configurationVariable;
+        }
+        
         /// <summary>
         /// Delete the configuration variable from the specified application.
         /// </summary>
@@ -463,16 +555,26 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The configuration variable id.</param>
         /// <returns></returns>
-        public async Task<ConfigurationVariable> DeleteConfigurationVariableAsync(string token, string slug, string id)
+        public async Task<string> DeleteConfigurationVariableAsync(string token, string slug, string id)
         {
             string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
             string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
-            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
+            return jsonString;
+        }
 
+        /// <summary>
+        /// Delete the configuration variable from the specified application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<string> DeleteConfigurationVariableAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
 
-            return configurationVariable;
+            return jsonString;
         }
 
         //---------------------------------------------------------------------------------------------------------------------
@@ -541,6 +643,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return hostname;
         }
+
         /// <summary>
         /// Delete a custom hostname from the application.
         /// </summary>
@@ -553,6 +656,22 @@ namespace OakIdeas.AppHarbor.Api
             string applicationUrlSlugged = _applicationHostnameUrl.AddSlug(slug).AddId(id);
 
             string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+
+            Hostname hostname = await JsonConvert.DeserializeObjectAsync<Hostname>(jsonString);
+
+
+            return hostname;
+        }
+
+        /// <summary>
+        /// Delete a custom hostname from the application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<Hostname> DeleteHostnameAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
 
             Hostname hostname = await JsonConvert.DeserializeObjectAsync<Hostname>(jsonString);
 
@@ -623,6 +742,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return serviceHook;
         }
+        
         /// <summary>
         /// Remove the service hook from the specified application.
         /// </summary>
@@ -635,6 +755,22 @@ namespace OakIdeas.AppHarbor.Api
             string applicationUrlSlugged = _applicationServiceHookUrl.AddSlug(slug).AddId(id);
 
             string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+
+            ServiceHook serviceHook = await JsonConvert.DeserializeObjectAsync<ServiceHook>(jsonString);
+
+
+            return serviceHook;
+        }
+
+        /// <summary>
+        /// Remove the service hook from the specified application.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<ServiceHook> DeleteServiceHookAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
 
             ServiceHook serviceHook = await JsonConvert.DeserializeObjectAsync<ServiceHook>(jsonString);
 
@@ -674,6 +810,7 @@ namespace OakIdeas.AppHarbor.Api
         //---------------------------------------------------------------------------------------------------------------------
         // Tests
         //---------------------------------------------------------------------------------------------------------------------
+        
         /// <summary>
         /// Retrieve the test detail for the specified build and test ID.
         /// </summary>
@@ -693,6 +830,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return serviceHook;
         }
+        
         /// <summary>
         /// Returns a list of test history items for the specified build ordered and grouped by id.
         /// </summary>
@@ -790,6 +928,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return drains;
         }
+
         /// <summary>
         /// Adds the specified drain url to the application.
         /// </summary>
@@ -811,6 +950,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return drain;
         }
+
         /// <summary>
         /// Delete a drain from the application.
         /// </summary>
@@ -829,6 +969,22 @@ namespace OakIdeas.AppHarbor.Api
             return drain;
 
         }
+
+        /// <summary>
+        /// Delete a drain from the application.
+        /// </summary>
+        /// <param name="token">The access token</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<Drain> DeleteDrainAsync(string token, string url)
+        {
+            string jsonString = await DeleteAsync(token, url);
+
+            Drain drain = await JsonConvert.DeserializeObjectAsync<Drain>(jsonString);
+
+            return drain;
+        }
+        
         //---------------------------------------------------------------------------------------------------------------------
         // Drains
         //---------------------------------------------------------------------------------------------------------------------
@@ -851,6 +1007,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return await GetAsync(token, uri);
         }
+
         /// <summary>
         /// Executes a get request
         /// </summary>
@@ -869,6 +1026,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return await requestMessage.Content.ReadAsStringAsync();
         }
+
         /// <summary>
         /// Executes a post request
         /// </summary>
@@ -883,6 +1041,7 @@ namespace OakIdeas.AppHarbor.Api
 
             return await PostAsync(token, uri, postData);
         }
+
         /// <summary>
         /// Executes a post request
         /// </summary>
