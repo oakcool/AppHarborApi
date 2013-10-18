@@ -65,11 +65,11 @@ namespace OakIdeas.AppHarbor.Api.Models
             set { _testsUrl = value; }
         }
 
-        private List<LogEnty> _logEnties;
+        private List<LogEntry> _logEnties;
         [JsonProperty("log_entries")]
-        public List<LogEnty> LogEnties
+        public List<LogEntry> LogEnties
         {
-            get { return _logEnties ?? (_logEnties = new List<LogEnty>()); }
+            get { return _logEnties ?? (_logEnties = new List<LogEntry>()); }
             set { _logEnties = value; }
         }
 
@@ -82,7 +82,7 @@ namespace OakIdeas.AppHarbor.Api.Models
         
         public Build()
         {
-            LogEnties = new List<LogEnty>();
+            LogEnties = new List<LogEntry>();
         }
     }
 }

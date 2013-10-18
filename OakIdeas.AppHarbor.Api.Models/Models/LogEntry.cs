@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace OakIdeas.AppHarbor.Api.Models
 {
-    public class LogEnty : BaseObject
+    public class LogEntry : BaseObject
     {
         private DateTime? _created;
         public DateTime? Created
