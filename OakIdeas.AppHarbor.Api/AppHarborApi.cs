@@ -207,6 +207,22 @@ namespace OakIdeas.AppHarbor.Api
 
             return build;
         }
+
+        /// <summary>
+        /// Retrieve the details for the specified build.
+        /// </summary>
+        /// <param name="token">The access token.</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<Build> GetBuildWithUrlAsync(string token, string url)
+        {            
+            string jsonString = await GetAsync(token, url);
+
+            Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
+
+            return build;
+        }
+
         /// <summary>
         /// Retrieves a list of builds for the specified application, ordered by created in descending order. Item properties match the build detail response properties with the addition of the build detail URL.
         /// </summary>
