@@ -864,6 +864,21 @@ namespace OakIdeas.AppHarbor.Api
 
             return serviceHooks;
         }
+
+        /// <summary>
+        /// Returns a list of test history items for the specified build ordered and grouped by id.
+        /// </summary>
+        /// <param name="token">The access token</param>
+        /// <param name="url">The resource URL
+        /// <returns></returns>
+        public async Task<List<Test>> GetTestsAsync(string token, string url)
+        {            
+            string jsonString = await GetAsync(token, url);
+
+            List<Test> serviceHooks = await JsonConvert.DeserializeObjectAsync<List<Test>>(jsonString);
+
+            return serviceHooks;
+        }
         //---------------------------------------------------------------------------------------------------------------------
         // Tests
         //---------------------------------------------------------------------------------------------------------------------
