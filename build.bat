@@ -29,12 +29,12 @@ copy OakIdeas.AppHarbor.Api.Models\bin\%config%\*.pdb Build\
 
 REM Package
 mkdir Build
-.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.Core.csproj" -symbols -o Build -p Configuration=%config% %version%
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Core\OakIdeas.AppHarbor.Api.Core.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Core\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Core\bin\%config%\*.pdb Build\
 
 REM Package
 mkdir Build
-.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.Collaborators.csproj" -symbols -o Build -p Configuration=%config% %version%
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Collaborators\OakIdeas.AppHarbor.Api.Collaborators.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Collaborators\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Collaborators\bin\%config%\*.pdb Build\
