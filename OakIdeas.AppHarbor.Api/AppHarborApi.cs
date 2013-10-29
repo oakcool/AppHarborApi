@@ -22,8 +22,8 @@ namespace OakIdeas.AppHarbor.Api
         //private const string _applicationCollaboratorsUrl = "applications/{slug}/collaborators";
         //private const string _applicationCollaboratorUrl = "applications/{slug}/collaborators/{id}";
         //////////////
-        private const string _applicationErrorsUrl = "applications/{slug}/errors";
-        private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
+        //private const string _applicationErrorsUrl = "applications/{slug}/errors";
+        //private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
         //private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
         //private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
         private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
@@ -413,49 +413,49 @@ namespace OakIdeas.AppHarbor.Api
         ////---------------------------------------------------------------------------------------------------------------------
         ////---------------------------------------------------------------------------------------------------------------------
        
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
-        // Errors
-        //---------------------------------------------------------------------------------------------------------------------
-        /// <summary>
-        /// Retrieve the details for the specified error.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The error id.</param>
-        /// <returns></returns>
-        public async Task<Error> GetErrorAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationErrorUrl.AddSlug(slug).AddId(id);
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Errors
+        ////---------------------------------------------------------------------------------------------------------------------
+        ///// <summary>
+        ///// Retrieve the details for the specified error.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The error id.</param>
+        ///// <returns></returns>
+        //public async Task<Error> GetErrorAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationErrorUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            Error error = await JsonConvert.DeserializeObjectAsync<Error>(jsonString);
+        //    Error error = await JsonConvert.DeserializeObjectAsync<Error>(jsonString);
 
-            return error;
-        }
-        /// <summary>
-        /// Retrieves a list of the latest unhandled exceptions for the application, in descending order by date. Item properties match the error detail response properties with the addition of the detail URL.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <returns></returns>
-        public async Task<List<Error>> GetErrorsAsync(string token, string slug)
-        {
-            string applicationUrlSlugged = _applicationErrorsUrl.AddSlug(slug);
+        //    return error;
+        //}
+        ///// <summary>
+        ///// Retrieves a list of the latest unhandled exceptions for the application, in descending order by date. Item properties match the error detail response properties with the addition of the detail URL.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <returns></returns>
+        //public async Task<List<Error>> GetErrorsAsync(string token, string slug)
+        //{
+        //    string applicationUrlSlugged = _applicationErrorsUrl.AddSlug(slug);
 
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            List<Error> errors = await JsonConvert.DeserializeObjectAsync<List<Error>>(jsonString);
+        //    List<Error> errors = await JsonConvert.DeserializeObjectAsync<List<Error>>(jsonString);
 
 
-            return errors;
-        }
+        //    return errors;
+        //}
 
-        //---------------------------------------------------------------------------------------------------------------------
-        // Errors
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Errors
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
 
         ////---------------------------------------------------------------------------------------------------------------------
         ////---------------------------------------------------------------------------------------------------------------------
