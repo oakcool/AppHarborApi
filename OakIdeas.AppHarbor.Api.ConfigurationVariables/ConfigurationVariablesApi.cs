@@ -10,18 +10,18 @@ using Newtonsoft.Json;
 
 namespace OakIdeas.AppHarbor.Api.ConfigurationVariables
 {
-    public class ConfigurationVariableApi : AppHarborApi
+    public class ConfigurationVariablesApi : AppHarborApi
     {
         private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
         private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
 
-        private static ConfigurationVariableApi instance;
-        public static ConfigurationVariableApi Instance
+        private static ConfigurationVariablesApi instance;
+        public static ConfigurationVariablesApi Instance
         {
-            get { return instance ?? (instance = new ConfigurationVariableApi()); }
+            get { return instance ?? (instance = new ConfigurationVariablesApi()); }
         }
 
-        private ConfigurationVariableApi()
+        private ConfigurationVariablesApi()
         {
             
         }

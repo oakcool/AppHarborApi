@@ -46,7 +46,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationVariableApi.cs" />
+    <Compile Include="ConfigurationVariablesApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

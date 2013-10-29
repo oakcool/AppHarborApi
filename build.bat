@@ -47,3 +47,7 @@ copy OakIdeas.AppHarbor.Api.ConfigurationVariables\bin\%config%\*.pdb Build\
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Errors\OakIdeas.AppHarbor.Api.Errors.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Errors\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Errors\bin\%config%\*.pdb Build\
+
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Hostnames\OakIdeas.AppHarbor.Api.Hostnames.csproj" -symbols -o Build -p Configuration=%config% %version%
+copy OakIdeas.AppHarbor.Api.Hostnames\bin\%config%\*.dll Build\
+copy OakIdeas.AppHarbor.Api.Hostnames\bin\%config%\*.pdb Build\
