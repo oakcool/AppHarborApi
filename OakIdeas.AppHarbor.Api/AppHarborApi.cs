@@ -26,8 +26,8 @@ namespace OakIdeas.AppHarbor.Api
         private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
         private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
         private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
-        //private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
-        //private const string _applicationBuildTestUrl = "applications/{slug}/builds/{buildId}/tests/{id}";
+        private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
+        private const string _applicationBuildTestUrl = "applications/{slug}/builds/{buildId}/tests/{id}";
         private const string _applicationHostnamesUrl = "applications/{slug}/hostnames";
         private const string _applicationHostnameUrl = "applications/{slug}/hostnames/{id}";
         private const string _applicationServiceHooksUrl = "applications/{slug}/servicehooks";
