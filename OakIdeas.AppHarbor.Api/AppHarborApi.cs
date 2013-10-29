@@ -24,8 +24,8 @@ namespace OakIdeas.AppHarbor.Api
         //////////////
         private const string _applicationErrorsUrl = "applications/{slug}/errors";
         private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
-        private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
-        private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
+        //private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
+        //private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
         private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
         private const string _applicationBuildTestUrl = "applications/{slug}/builds/{buildId}/tests/{id}";
         private const string _applicationHostnamesUrl = "applications/{slug}/hostnames";
@@ -396,22 +396,22 @@ namespace OakIdeas.AppHarbor.Api
         //}
 
         
-        /// <summary>
-        /// Delete the collaborator from the specified application.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="url">The resource URL        
-        /// <returns></returns>
-        public async Task<string> DeleteCollaboratorAsync(string token, string url)
-        {
-            string jsonString = await DeleteAsync(token, url);
+        ///// <summary>
+        ///// Delete the collaborator from the specified application.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="url">The resource URL        
+        ///// <returns></returns>
+        //public async Task<string> DeleteCollaboratorAsync(string token, string url)
+        //{
+        //    string jsonString = await DeleteAsync(token, url);
 
-            return jsonString;
-        }
-        //---------------------------------------------------------------------------------------------------------------------
-        // Collabortors
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
+        //    return jsonString;
+        //}
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Collabortors
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
        
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
@@ -457,148 +457,148 @@ namespace OakIdeas.AppHarbor.Api
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
 
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
-        // Configuration Variables
-        //---------------------------------------------------------------------------------------------------------------------
-        /// <summary>
-        /// Retrieve the detail for the specified configuration variable.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The configuration variable id.</param>
-        /// <returns></returns>
-        public async Task<ConfigurationVariable> GetConfigurationVariableAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Configuration Variables
+        ////---------------------------------------------------------------------------------------------------------------------
+        ///// <summary>
+        ///// Retrieve the detail for the specified configuration variable.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The configuration variable id.</param>
+        ///// <returns></returns>
+        //public async Task<ConfigurationVariable> GetConfigurationVariableAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
-
-
-            return configurationVariable;
-        }
-        /// <summary>
-        /// Retrieves the list of configuration variables for the application. The item properties are the same as the Configuration Variable detail with the addition of the URL for the detail of each item.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <returns></returns>
-        public async Task<List<ConfigurationVariable>> GetConfigurationVariablesAsync(string token, string slug)
-        {
-            string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
-
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
-
-            List<ConfigurationVariable> configurationVariables = await JsonConvert.DeserializeObjectAsync<List<ConfigurationVariable>>(jsonString);
+        //    ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
 
-            return configurationVariables;
-        }
-        /// <summary>
-        /// Create a new configuration variable for the application with the specified key and value.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="key">The key or name.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public async Task<ConfigurationVariable> CreateConfigurationVariableAsync(string token, string slug, string key, string value)
-        {
-            string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
+        //    return configurationVariable;
+        //}
+        ///// <summary>
+        ///// Retrieves the list of configuration variables for the application. The item properties are the same as the Configuration Variable detail with the addition of the URL for the detail of each item.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <returns></returns>
+        //public async Task<List<ConfigurationVariable>> GetConfigurationVariablesAsync(string token, string slug)
+        //{
+        //    string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
 
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
-            postData.Add(new KeyValuePair<string, string>("value", value));
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
+        //    List<ConfigurationVariable> configurationVariables = await JsonConvert.DeserializeObjectAsync<List<ConfigurationVariable>>(jsonString);
 
-            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
-            return configurationVariable;
-        }
-        /// <summary>
-        /// Edit the details for an existing configuration variable.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The configuration variable id.</param>
-        /// <param name="key">The key or name.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string slug, string id, string key, string value)
-        {
-            string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
+        //    return configurationVariables;
+        //}
+        ///// <summary>
+        ///// Create a new configuration variable for the application with the specified key and value.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="key">The key or name.</param>
+        ///// <param name="value">The value.</param>
+        ///// <returns></returns>
+        //public async Task<ConfigurationVariable> CreateConfigurationVariableAsync(string token, string slug, string key, string value)
+        //{
+        //    string applicationUrlSlugged = _applicationConfigurationVariablesUrl.AddSlug(slug);
 
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ","_")));
-            postData.Add(new KeyValuePair<string, string>("value", value));
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
+        //    postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await PutAsync(token, applicationUrlSlugged, postData);
+        //    string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
 
-            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
+        //    ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
-            return configurationVariable;
-        }
+        //    return configurationVariable;
+        //}
+        ///// <summary>
+        ///// Edit the details for an existing configuration variable.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The configuration variable id.</param>
+        ///// <param name="key">The key or name.</param>
+        ///// <param name="value">The value.</param>
+        ///// <returns></returns>
+        //public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string slug, string id, string key, string value)
+        //{
+        //    string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
-        /// <summary>
-        /// Edit the details for an existing configuration variable.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="url">The resource URL
-        /// <param name="key">The key or name.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string url, string key, string value)
-        {
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
-            postData.Add(new KeyValuePair<string, string>("value", value));
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ","_")));
+        //    postData.Add(new KeyValuePair<string, string>("value", value));
 
-            string jsonString = await PutAsync(token, url, postData);
+        //    string jsonString = await PutAsync(token, applicationUrlSlugged, postData);
 
-            ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
+        //    ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
 
-            return configurationVariable;
-        }
+        //    return configurationVariable;
+        //}
+
+        ///// <summary>
+        ///// Edit the details for an existing configuration variable.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="url">The resource URL
+        ///// <param name="key">The key or name.</param>
+        ///// <param name="value">The value.</param>
+        ///// <returns></returns>
+        //public async Task<ConfigurationVariable> UpdateConfigurationVariableAsync(string token, string url, string key, string value)
+        //{
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("key", key.Replace(" ", "_")));
+        //    postData.Add(new KeyValuePair<string, string>("value", value));
+
+        //    string jsonString = await PutAsync(token, url, postData);
+
+        //    ConfigurationVariable configurationVariable = await JsonConvert.DeserializeObjectAsync<ConfigurationVariable>(jsonString);
+
+        //    return configurationVariable;
+        //}
         
-        /// <summary>
-        /// Delete the configuration variable from the specified application.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The configuration variable id.</param>
-        /// <returns></returns>
-        public async Task<string> DeleteConfigurationVariableAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
+        ///// <summary>
+        ///// Delete the configuration variable from the specified application.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The configuration variable id.</param>
+        ///// <returns></returns>
+        //public async Task<string> DeleteConfigurationVariableAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationConfigurationVariableUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+        //    string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
-            return jsonString;
-        }
+        //    return jsonString;
+        //}
 
-        /// <summary>
-        /// Delete the configuration variable from the specified application.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="url">The resource URL
-        /// <returns></returns>
-        public async Task<string> DeleteConfigurationVariableAsync(string token, string url)
-        {
-            string jsonString = await DeleteAsync(token, url);
+        ///// <summary>
+        ///// Delete the configuration variable from the specified application.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="url">The resource URL
+        ///// <returns></returns>
+        //public async Task<string> DeleteConfigurationVariableAsync(string token, string url)
+        //{
+        //    string jsonString = await DeleteAsync(token, url);
 
-            return jsonString;
-        }
+        //    return jsonString;
+        //}
 
-        //---------------------------------------------------------------------------------------------------------------------
-        // Configuration Variables
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Configuration Variables
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
 
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------

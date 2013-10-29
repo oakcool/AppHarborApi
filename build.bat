@@ -39,3 +39,7 @@ copy OakIdeas.AppHarbor.Api.Applications\bin\%config%\*.pdb Build\
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Builds\OakIdeas.AppHarbor.Api.Builds.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Builds\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Builds\bin\%config%\*.pdb Build\
+
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.ConfigurationVariables\OakIdeas.AppHarbor.Api.ConfigurationVariables.csproj" -symbols -o Build -p Configuration=%config% %version%
+copy OakIdeas.AppHarbor.Api.ConfigurationVariables\bin\%config%\*.dll Build\
+copy OakIdeas.AppHarbor.Api.ConfigurationVariables\bin\%config%\*.pdb Build\
