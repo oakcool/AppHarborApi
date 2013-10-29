@@ -15,9 +15,9 @@ namespace OakIdeas.AppHarbor.Api
         private const string _baseUrl = "https://appharbor.com/";
         //private const string _applicationsUrl = "applications";
         //private const string _applicationUrl = "applications/{slug}";
-        private const string _applicationBuildsUrl = "applications/{slug}/builds";
-        private const string _applicationBuildUrl = "applications/{slug}/builds/{id}";
-        private const string _applicationBuildDeployUrl = "applications/{slug}/builds/{id}/deploy";
+        //private const string _applicationBuildsUrl = "applications/{slug}/builds";
+        //private const string _applicationBuildUrl = "applications/{slug}/builds/{id}";
+        //private const string _applicationBuildDeployUrl = "applications/{slug}/builds/{id}/deploy";
         //Moved this to collaborators project
         //private const string _applicationCollaboratorsUrl = "applications/{slug}/collaborators";
         //private const string _applicationCollaboratorUrl = "applications/{slug}/collaborators/{id}";
@@ -26,8 +26,8 @@ namespace OakIdeas.AppHarbor.Api
         private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
         private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
         private const string _applicationConfigurationVariableUrl = "applications/{slug}/configurationvariables/{id}";
-        private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
-        private const string _applicationBuildTestUrl = "applications/{slug}/builds/{buildId}/tests/{id}";
+        //private const string _applicationBuildTestsUrl = "applications/{slug}/builds/{buildId}/tests";
+        //private const string _applicationBuildTestUrl = "applications/{slug}/builds/{buildId}/tests/{id}";
         private const string _applicationHostnamesUrl = "applications/{slug}/hostnames";
         private const string _applicationHostnameUrl = "applications/{slug}/hostnames/{id}";
         private const string _applicationServiceHooksUrl = "applications/{slug}/servicehooks";
@@ -188,90 +188,90 @@ namespace OakIdeas.AppHarbor.Api
         ////---------------------------------------------------------------------------------------------------------------------
         ////---------------------------------------------------------------------------------------------------------------------
 
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
-        // Builds
-        //---------------------------------------------------------------------------------------------------------------------
-        /// <summary>
-        /// Retrieve the details for the specified build.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The build id.</param>
-        /// <returns></returns>
-        public async Task<Build> GetBuildAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationBuildUrl.AddSlug(slug).AddId(id);
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Builds
+        ////---------------------------------------------------------------------------------------------------------------------
+        ///// <summary>
+        ///// Retrieve the details for the specified build.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The build id.</param>
+        ///// <returns></returns>
+        //public async Task<Build> GetBuildAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationBuildUrl.AddSlug(slug).AddId(id);
             
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
             
-            Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
+        //    Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
 
-            return build;
-        }
+        //    return build;
+        //}
 
-        /// <summary>
-        /// Retrieve the details for the specified build.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="url">The resource URL
-        /// <returns></returns>
-        public async Task<Build> GetBuildWithUrlAsync(string token, string url)
-        {            
-            string jsonString = await GetAsync(token, url);
+        ///// <summary>
+        ///// Retrieve the details for the specified build.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="url">The resource URL
+        ///// <returns></returns>
+        //public async Task<Build> GetBuildWithUrlAsync(string token, string url)
+        //{            
+        //    string jsonString = await GetAsync(token, url);
 
-            Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
+        //    Build build = await JsonConvert.DeserializeObjectAsync<Build>(jsonString);
 
-            return build;
-        }
+        //    return build;
+        //}
 
-        /// <summary>
-        /// Retrieves a list of builds for the specified application, ordered by created in descending order. Item properties match the build detail response properties with the addition of the build detail URL.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <returns>List of builds.</returns>
-        public async Task<List<Build>> GetBuildsAsync(string token, string slug)
-        {
-            string applicationUrlSlugged = _applicationBuildsUrl.AddSlug(slug);
+        ///// <summary>
+        ///// Retrieves a list of builds for the specified application, ordered by created in descending order. Item properties match the build detail response properties with the addition of the build detail URL.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <returns>List of builds.</returns>
+        //public async Task<List<Build>> GetBuildsAsync(string token, string slug)
+        //{
+        //    string applicationUrlSlugged = _applicationBuildsUrl.AddSlug(slug);
 
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            List<Build> builds = await JsonConvert.DeserializeObjectAsync<List<Build>>(jsonString);
-
-
-            return builds;
-        }
-        /// <summary>
-        /// Trigger a specific build for deployment.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The build id.</param>
-        /// <returns></returns>
-        public async Task DeployBuildAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationBuildDeployUrl.AddSlug(slug).AddId(id);
-
-            string jsonString = await PostAsync(token, applicationUrlSlugged, null);
-        }
-        /// <summary>
-        /// Trigger a specific build for deployment.
-        /// </summary>
-        /// <param name="url">The access token.</param>        
-        /// <returns></returns>
-        public async Task DeployBuildAsync(string token, string url)
-        {
-            string applicationUrlSlugged = String.Format("{0}/deploy", url);
-
-            string jsonString = await PostAsync(token, applicationUrlSlugged, null);
-        }
+        //    List<Build> builds = await JsonConvert.DeserializeObjectAsync<List<Build>>(jsonString);
 
 
-        //---------------------------------------------------------------------------------------------------------------------
-        // Builds
-        //---------------------------------------------------------------------------------------------------------------------
-        //---------------------------------------------------------------------------------------------------------------------
+        //    return builds;
+        //}
+        ///// <summary>
+        ///// Trigger a specific build for deployment.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The build id.</param>
+        ///// <returns></returns>
+        //public async Task DeployBuildAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationBuildDeployUrl.AddSlug(slug).AddId(id);
+
+        //    string jsonString = await PostAsync(token, applicationUrlSlugged, null);
+        //}
+        ///// <summary>
+        ///// Trigger a specific build for deployment.
+        ///// </summary>
+        ///// <param name="url">The access token.</param>        
+        ///// <returns></returns>
+        //public async Task DeployBuildAsync(string token, string url)
+        //{
+        //    string applicationUrlSlugged = String.Format("{0}/deploy", url);
+
+        //    string jsonString = await PostAsync(token, applicationUrlSlugged, null);
+        //}
+
+
+        ////---------------------------------------------------------------------------------------------------------------------
+        //// Builds
+        ////---------------------------------------------------------------------------------------------------------------------
+        ////---------------------------------------------------------------------------------------------------------------------
 
         //---------------------------------------------------------------------------------------------------------------------
         //---------------------------------------------------------------------------------------------------------------------
