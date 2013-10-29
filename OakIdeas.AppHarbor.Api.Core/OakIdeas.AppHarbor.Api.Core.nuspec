@@ -14,8 +14,7 @@
     <releaseNotes>Breaking apart the API into separate DLL to with maintenance and usability  </releaseNotes>
     <tags>AppHarbor Portable Class Library Async PCL</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="5.0.6" />
-      <dependency id="Microsoft.Net.Http" version="2.2.15" />
+      <dependency id="Newtonsoft.Json" version="5.0.6" />      
       <dependency id="OakIdeas.AppHarbor.Api.Models" />      
     </dependencies>
   </metadata>
