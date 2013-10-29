@@ -18,8 +18,10 @@ namespace OakIdeas.AppHarbor.Api
         private const string _applicationBuildsUrl = "applications/{slug}/builds";
         private const string _applicationBuildUrl = "applications/{slug}/builds/{id}";
         private const string _applicationBuildDeployUrl = "applications/{slug}/builds/{id}/deploy";
+        //Moved this to collaborators project
         private const string _applicationCollaboratorsUrl = "applications/{slug}/collaborators";
         private const string _applicationCollaboratorUrl = "applications/{slug}/collaborators/{id}";
+        //////////////
         private const string _applicationErrorsUrl = "applications/{slug}/errors";
         private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
         private const string _applicationConfigurationVariablesUrl = "applications/{slug}/configurationvariables";
