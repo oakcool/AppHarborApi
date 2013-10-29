@@ -19,8 +19,8 @@ namespace OakIdeas.AppHarbor.Api
         private const string _applicationBuildUrl = "applications/{slug}/builds/{id}";
         private const string _applicationBuildDeployUrl = "applications/{slug}/builds/{id}/deploy";
         //Moved this to collaborators project
-        private const string _applicationCollaboratorsUrl = "applications/{slug}/collaborators";
-        private const string _applicationCollaboratorUrl = "applications/{slug}/collaborators/{id}";
+        //private const string _applicationCollaboratorsUrl = "applications/{slug}/collaborators";
+        //private const string _applicationCollaboratorUrl = "applications/{slug}/collaborators/{id}";
         //////////////
         private const string _applicationErrorsUrl = "applications/{slug}/errors";
         private const string _applicationErrorUrl = "applications/{slug}/errors/{id}";
@@ -284,116 +284,116 @@ namespace OakIdeas.AppHarbor.Api
         /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
         /// <param name="id">The collaborator id.</param>
         /// <returns></returns>
-        public async Task<Collaborator> GetCollaboratorAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationCollaboratorUrl.AddSlug(slug).AddId(id);
+        //public async Task<Collaborator> GetCollaboratorAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationCollaboratorUrl.AddSlug(slug).AddId(id);
 
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
-
-
-            return collaborator;
-        }
-        /// <summary>
-        /// Retrieve a list of collaborators for an application, ordered by user name. Item properties match collaborator detail response properties with the addition of the detail URL.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <returns></returns>
-        public async Task<List<Collaborator>> GetCollaboratorsAsync(string token, string slug)
-        {
-            string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
-
-            string jsonString = await GetAsync(token, applicationUrlSlugged);
-
-            List<Collaborator> collaborators = await JsonConvert.DeserializeObjectAsync<List<Collaborator>>(jsonString);
+        //    Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
 
 
-            return collaborators;
-        }
+        //    return collaborator;
+        //}
+        ///// <summary>
+        ///// Retrieve a list of collaborators for an application, ordered by user name. Item properties match collaborator detail response properties with the addition of the detail URL.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <returns></returns>
+        //public async Task<List<Collaborator>> GetCollaboratorsAsync(string token, string slug)
+        //{
+        //    string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
 
-        /// <summary>
-        /// Create a new collaborator on the application with the specified role.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="collaboratorEmail">The email address of the collaborator to add.</param>
-        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
-        /// <returns></returns>
-        public async Task<string> CreateCollaboratorAsync(string token, string slug, string collaboratorEmail, string role)
-        {
-            string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("collaboratorEmail", collaboratorEmail));
-            postData.Add(new KeyValuePair<string, string>("role", role));
+        //    string jsonString = await GetAsync(token, applicationUrlSlugged);
 
-            string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
+        //    List<Collaborator> collaborators = await JsonConvert.DeserializeObjectAsync<List<Collaborator>>(jsonString);
 
-            return jsonString;
-        }
+
+        //    return collaborators;
+        //}
+
+        ///// <summary>
+        ///// Create a new collaborator on the application with the specified role.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="collaboratorEmail">The email address of the collaborator to add.</param>
+        ///// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
+        ///// <returns></returns>
+        //public async Task<string> CreateCollaboratorAsync(string token, string slug, string collaboratorEmail, string role)
+        //{
+        //    string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug);
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("collaboratorEmail", collaboratorEmail));
+        //    postData.Add(new KeyValuePair<string, string>("role", role));
+
+        //    string jsonString = await PostAsync(token, applicationUrlSlugged, postData);
+
+        //    return jsonString;
+        //}
         
-        /// <summary>
-        /// Edit the details for an existing collaborator.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The collaborator id.</param>
-        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
-        /// <returns></returns>
-        public async Task<Collaborator> UpdateCollaboratorAsync(string token, string slug, string id, string role)
-        {
-            string applicationCollaboratorSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
+        ///// <summary>
+        ///// Edit the details for an existing collaborator.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The collaborator id.</param>
+        ///// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
+        ///// <returns></returns>
+        //public async Task<Collaborator> UpdateCollaboratorAsync(string token, string slug, string id, string role)
+        //{
+        //    string applicationCollaboratorSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
 
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("role", role));
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("role", role));
 
-            string jsonString = await PutAsync(token, applicationCollaboratorSlugged, postData);
+        //    string jsonString = await PutAsync(token, applicationCollaboratorSlugged, postData);
 
-            Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
-
-
-            return collaborator;
-        }
-
-        /// <summary>
-        /// Edit the details for an existing collaborator.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="url">The resource URL        
-        /// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
-        /// <returns></returns>
-        public async Task<Collaborator> UpdateCollaboratorAsync(string token, string url, string role)
-        {            
-            // This is the postdata
-            var postData = new List<KeyValuePair<string, string>>();
-            postData.Add(new KeyValuePair<string, string>("role", role));
-
-            string jsonString = await PutAsync(token, url, postData);
-
-            Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
+        //    Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
 
 
-            return collaborator;
-        }
+        //    return collaborator;
+        //}
+
+        ///// <summary>
+        ///// Edit the details for an existing collaborator.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="url">The resource URL        
+        ///// <param name="role">The access level for the collaborator. Accepted values are collaborator or administrator.</param>
+        ///// <returns></returns>
+        //public async Task<Collaborator> UpdateCollaboratorAsync(string token, string url, string role)
+        //{            
+        //    // This is the postdata
+        //    var postData = new List<KeyValuePair<string, string>>();
+        //    postData.Add(new KeyValuePair<string, string>("role", role));
+
+        //    string jsonString = await PutAsync(token, url, postData);
+
+        //    Collaborator collaborator = await JsonConvert.DeserializeObjectAsync<Collaborator>(jsonString);
+
+
+        //    return collaborator;
+        //}
         
-        /// <summary>
-        /// Delete the collaborator from the specified application.
-        /// </summary>
-        /// <param name="token">The access token.</param>
-        /// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
-        /// <param name="id">The collaborator id.</param>
-        /// <returns></returns>
-        public async Task<string> DeleteCollaboratorAsync(string token, string slug, string id)
-        {
-            string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
+        ///// <summary>
+        ///// Delete the collaborator from the specified application.
+        ///// </summary>
+        ///// <param name="token">The access token.</param>
+        ///// <param name="slug">The globally unique, URL-friendly version of the application name.</param>
+        ///// <param name="id">The collaborator id.</param>
+        ///// <returns></returns>
+        //public async Task<string> DeleteCollaboratorAsync(string token, string slug, string id)
+        //{
+        //    string applicationUrlSlugged = _applicationCollaboratorsUrl.AddSlug(slug).AddId(id);
             
-            string jsonString = await DeleteAsync(token, applicationUrlSlugged);
+        //    string jsonString = await DeleteAsync(token, applicationUrlSlugged);
 
-            return jsonString;
-        }
+        //    return jsonString;
+        //}
 
         
         /// <summary>
