@@ -55,3 +55,7 @@ copy OakIdeas.AppHarbor.Api.Hostnames\bin\%config%\*.pdb Build\
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.ServiceHooks\OakIdeas.AppHarbor.Api.ServiceHooks.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.ServiceHooks\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.ServiceHooks\bin\%config%\*.pdb Build\
+
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Users\OakIdeas.AppHarbor.Api.Users.csproj" -symbols -o Build -p Configuration=%config% %version%
+copy OakIdeas.AppHarbor.Api.Users\bin\%config%\*.dll Build\
+copy OakIdeas.AppHarbor.Api.Users\bin\%config%\*.pdb Build\

@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Host
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.ServiceHooks", "OakIdeas.AppHarbor.Api.ServiceHooks\OakIdeas.AppHarbor.Api.ServiceHooks.csproj", "{6DD6AECC-8E50-41ED-B0EE-75AF46AE2896}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Users", "OakIdeas.AppHarbor.Api.Users\OakIdeas.AppHarbor.Api.Users.csproj", "{BC934160-09D3-41C2-9407-BBA42F86428D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,6 +162,16 @@ Global
 		{6DD6AECC-8E50-41ED-B0EE-75AF46AE2896}.Release|ARM.ActiveCfg = Release|Any CPU
 		{6DD6AECC-8E50-41ED-B0EE-75AF46AE2896}.Release|x64.ActiveCfg = Release|Any CPU
 		{6DD6AECC-8E50-41ED-B0EE-75AF46AE2896}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC934160-09D3-41C2-9407-BBA42F86428D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
