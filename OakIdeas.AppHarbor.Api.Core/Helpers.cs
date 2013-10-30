@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PCLWebUtility;
 
-namespace OakIdeas.AppHarbor.Api
+namespace OakIdeas.AppHarbor.Api.Core
 {
     public class Helpers
     {
