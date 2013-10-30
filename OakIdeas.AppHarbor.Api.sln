@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.LogSessions", "OakIdeas.AppHarbor.Api.LogSessions\OakIdeas.AppHarbor.Api.LogSessions.csproj", "{ED19EB46-59E9-4DA9-858F-B35F8C4AAA26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OakIdeas.AppHarbor.Api.Drains", "OakIdeas.AppHarbor.Api.Drains\OakIdeas.AppHarbor.Api.Drains.csproj", "{0B730734-25C6-418C-A1CF-536E544FA0B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -184,6 +186,16 @@ Global
 		{ED19EB46-59E9-4DA9-858F-B35F8C4AAA26}.Release|ARM.ActiveCfg = Release|Any CPU
 		{ED19EB46-59E9-4DA9-858F-B35F8C4AAA26}.Release|x64.ActiveCfg = Release|Any CPU
 		{ED19EB46-59E9-4DA9-858F-B35F8C4AAA26}.Release|x86.ActiveCfg = Release|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B730734-25C6-418C-A1CF-536E544FA0B3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
