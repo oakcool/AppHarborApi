@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OakIdeas.AppHarbor.Api.Core;
-using OakIdeas.AppHarbor.Api.Models;
 using OakIdeas.AppHarbor.Api.Core.Extensions;
 using Newtonsoft.Json;
+using OakIdeas.AppHarbor.Api.Core.Models;
 
 namespace OakIdeas.AppHarbor.Api.Collaborators
 {

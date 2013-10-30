@@ -40,10 +40,6 @@
       <Project>{cf7c69fd-0796-4068-911e-a4a09150fc1a}</Project>
       <Name>OakIdeas.AppHarbor.Api.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OakIdeas.AppHarbor.Api.Models\OakIdeas.AppHarbor.Api.Models.csproj">
-      <Project>{bec8a5f0-bd94-4c84-a73f-f449357fbd67}</Project>
-      <Name>OakIdeas.AppHarbor.Api.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorsApi.cs" />

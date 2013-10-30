@@ -43,7 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHarborApi.cs" />
+    <Compile Include="BaseObject.cs" />
     <Compile Include="Extensions\UrlStringExtensions.cs" />
+    <Compile Include="Models\AppHarborException.cs" />
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Build.cs" />
+    <Compile Include="Models\Collaborator.cs" />
+    <Compile Include="Models\Commit.cs" />
+    <Compile Include="Models\ConfigurationVariable.cs" />
+    <Compile Include="Models\Drain.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Hostname.cs" />
+    <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Models\ServiceHook.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OakIdeas.AppHarbor.Api.Core;
-using OakIdeas.AppHarbor.Api.Models;
+using OakIdeas.AppHarbor.Api.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
