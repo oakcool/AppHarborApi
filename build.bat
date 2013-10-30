@@ -16,14 +16,6 @@ REM Build
  
 REM Package
 mkdir Build
-.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api\OakIdeas.AppHarbor.Api.csproj" -symbols -o Build -p Configuration=%config% %version%
-copy OakIdeas.AppHarbor.Api\bin\%config%\*.dll Build\
-copy OakIdeas.AppHarbor.Api\bin\%config%\*.pdb Build\
-
-.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Models\OakIdeas.AppHarbor.Api.Models.csproj" -symbols -o Build -p Configuration=%config% %version%
-copy OakIdeas.AppHarbor.Api.Models\bin\%config%\*.dll Build\
-copy OakIdeas.AppHarbor.Api.Models\bin\%config%\*.pdb Build\
-
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Core\OakIdeas.AppHarbor.Api.Core.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Core\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Core\bin\%config%\*.pdb Build\
