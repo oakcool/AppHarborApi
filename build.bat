@@ -63,3 +63,7 @@ copy OakIdeas.AppHarbor.Api.Users\bin\%config%\*.pdb Build\
 .nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.Tests\OakIdeas.AppHarbor.Api.Tests.csproj" -symbols -o Build -p Configuration=%config% %version%
 copy OakIdeas.AppHarbor.Api.Tests\bin\%config%\*.dll Build\
 copy OakIdeas.AppHarbor.Api.Tests\bin\%config%\*.pdb Build\
+
+.nuget\nuget.exe pack "OakIdeas.AppHarbor.Api.LogSessions\OakIdeas.AppHarbor.Api.LogSessions.csproj" -symbols -o Build -p Configuration=%config% %version%
+copy OakIdeas.AppHarbor.Api.LogSessions\bin\%config%\*.dll Build\
+copy OakIdeas.AppHarbor.Api.LogSessions\bin\%config%\*.pdb Build\

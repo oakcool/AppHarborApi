@@ -32,7 +32,7 @@ namespace OakIdeas.AppHarbor.Api
         //private const string _applicationHostnameUrl = "applications/{slug}/hostnames/{id}";
         //private const string _applicationServiceHooksUrl = "applications/{slug}/servicehooks";
         //private const string _applicationServiceHookUrl = "applications/{slug}/servicehooks/{id}";
-        private const string _applicationLogSessionUrl = "applications/{slug}/logsession";
+        //private const string _applicationLogSessionUrl = "applications/{slug}/logsession";
         private const string _applicationDrainsUrl = "applications/{slug}/drains";
         private const string _applicationDrainUrl = "applications/{slug}/drains/{id}";
         //private const string _userUrl = "user";
